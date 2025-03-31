@@ -31,8 +31,8 @@ while(True):
                 
                 if len(posicion) != 0:
                     pto_i5 = posicion[9]
-                    x1, y1 = (pto_i5[1] - 80), (pto_i5[2] - 80)
-                    ancho_cuadro, alto_cuadro = (x1+80), (y1+80)
+                    x1, y1 = (pto_i5[1] - 100), (pto_i5[2] - 100)
+                    ancho_cuadro, alto_cuadro = (x1+200), (y1+200)
                     x2, y2 = (x1 + ancho_cuadro), (y1 + alto_cuadro)
                     dedos_reg = copy[y1:y2, x1:x2]
                     cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 3)
