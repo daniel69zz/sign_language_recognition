@@ -10,20 +10,24 @@ from tensorflow.keras.layers import Conv2D, MaxPooling2D
 from tensorflow.keras import backend as k
 from tensorflow.keras.optimizers import Adam
 
-datos_train = (r'C:\Users\HP\Downloads\ASL_Alphabet_Dataset\asl_alphabet_train')
-datos_valid = (r'C:\Users\HP\Downloads\ASL_Alphabet_Dataset\asl_alphabet_test')
+datos_train = (r'C:\Users\HP\Downloads\programacion_etc\sign_language\datos_train')
+datos_valid = (r'C:\Users\HP\Downloads\programacion_etc\sign_language\datos_valid')
 
 #   PARAMETROS
-epochs_ = 20
+epochs_ = 110   #para mas de 200k imagenes, el dataset tiene 213k imagenes aproximadamente
 altura, longitud = 200, 200
-batch_size = 1
-pasos = int(300/1)
-pasos_valid = int(300/1)
+batch_size = 64
+pasos = 2656
+pasos_valid = 672
 filtros_conv1 = 32
 filtros_conv2 = 64
+filtros_conv3 = 128
+filtros_conv4 = 256
+
+
 
 size_filtro1 = (3, 3)
-size_filtro2 = (2, 2)
+size_filtro2 = (3, 3)
 size_pooling = (2, 2)
 
 clases = 27
@@ -47,12 +51,18 @@ cnn.add(MaxPooling2D(pool_size = size_pooling))
 cnn.add(Conv2D(filtros_conv2, size_filtro2, padding = 'same', activation = 'relu'))
 cnn.add(MaxPooling2D(pool_size = size_pooling))
 
+cnn.add(Conv2D(filtros_conv3, size_filtro2, padding = 'same', activation = 'relu'))
+cnn.add(MaxPooling2D(pool_size = size_pooling))
+
+cnn.add(Conv2D(filtros_conv4, size_filtro2, padding = 'same', activation = 'relu'))
+cnn.add(MaxPooling2D(pool_size = size_pooling))
+
 
 #   APLANANDO A 1D LA IMAGEN (MATRIZ)
 cnn.add(Flatten())
-cnn.add(Dense(1383, activation = 'relu'))
+cnn.add(Dense(130, activation = 'relu'))
 cnn.add(Dropout(0.5))
-cnn.add(Dense(clases, activation='softmax')) 
+cnn.add(Dense(clases, activation='softmax'))
 
 
 # OPTIMIZADOR
