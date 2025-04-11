@@ -54,13 +54,10 @@ cnn.add(MaxPooling2D(pool_size = size_pooling))
 cnn.add(Conv2D(filtros_conv3, size_filtro2, padding = 'same', activation = 'relu'))
 cnn.add(MaxPooling2D(pool_size = size_pooling))
 
-cnn.add(Conv2D(filtros_conv4, size_filtro2, padding = 'same', activation = 'relu'))
-cnn.add(MaxPooling2D(pool_size = size_pooling))
-
 
 #   APLANANDO A 1D LA IMAGEN (MATRIZ)
 cnn.add(Flatten())
-cnn.add(Dense(130, activation = 'relu'))
+cnn.add(Dense(200, activation = 'relu'))
 cnn.add(Dropout(0.5))
 cnn.add(Dense(clases, activation='softmax'))
 
